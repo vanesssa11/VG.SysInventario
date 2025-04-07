@@ -1,0 +1,52 @@
+﻿@model List<Cliente>
+<h1>Lista de Clientes</h1>
+<div>
+    <a asp-controller="Cliente" asp-action="Create" class="btn btn-primary">Agregar Cliente nuevo</a>
+    <a asp-controller="Cliente" asp-action="ReporteClientesExcel" class="btn btn-success">Generar Excel</a>
+    <br />
+    <br />
+    <div class="card">
+        <form asp-action="SubirExcelClientes" asp-controller="Cliente" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <label for="archivo">Subir Excel</label>
+                <input type="file" name="archivo" required />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Subir y guardar</button>
+        </form>
+    </div>
+    <br />
+    <br />
+    @if (Model != null)
+
+    {
+        <table class=" table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>DUI</td>
+                    <td>Dirección</td>
+                    <td>Telefono</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cliente in Model)
+                {
+                    <tr>
+                        <th>@cliente.Nombre</th>
+                        <th>@cliente.DUI</th>
+                        <th>@cliente.Dirección</th>
+                        <th>@cliente.Telefono</th>
+
+                        <th>
+                            <a class="btn btn-primary" asp-asp-controller="Cliente" asp-action="Edit" asp-route-id="@cliente.Id">Editar</a> |
+                            <a class="btn btn-danger" asp-asp-controller="Cliente" asp-action="Delete" asp-route-id="@cliente.Id">Eliminar</a>
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

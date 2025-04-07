@@ -31,7 +31,6 @@ namespace VG.SysInventario.EN
         public virtual Proveedor? Proveedor { get; set; }
 
         //Relacion con detalleCompra (una compra tiene varos detalles)
-
         public virtual ICollection<DetalleCompra>? DetalleCompras { get; set; }
 
         public enum  EnumEstadoCompra

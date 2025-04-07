@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+
 using VG.SysInventario.EN;
 
 
@@ -21,8 +22,12 @@ namespace VG.SysInventario.DAL
      
         public DbSet<Proveedor> proveedores { get; set; }
 
+        public DbSet<Cliente> clientes { get; set; }
+
         public DbSet<Compra> Compras { get; set; }
+
         public DbSet<DetalleCompra> DetalleCompras { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,8 +35,12 @@ namespace VG.SysInventario.DAL
                 .HasOne(d => d.Compra)
                 .WithMany(c => c.DetalleCompras)
                 .HasForeignKey(d => d.IdCompra);
+            base.OnModelCreating(modelBuilder);
 
-
+            modelBuilder.Entity<DetalleVenta>()
+               .HasOne(d => d.Venta)
+               .WithMany(c => c.DetalleVentas)
+               .HasForeignKey(d => d.IdVenta);
             base.OnModelCreating(modelBuilder);
         }
 
