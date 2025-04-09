@@ -23,6 +23,9 @@ builder.Services.AddScoped<ClienteBL>();
 builder.Services.AddScoped<CompraDAL>();
 builder.Services.AddScoped<CompraBL>();
 
+builder.Services.AddScoped<VentaDAL>();
+builder.Services.AddScoped<VentaBL>();
+
 
 
 // Add services to the container.

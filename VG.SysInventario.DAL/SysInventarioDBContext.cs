@@ -25,7 +25,8 @@ namespace VG.SysInventario.DAL
         public DbSet<Cliente> clientes { get; set; }
 
         public DbSet<Compra> Compras { get; set; }
-
+        public DbSet<Venta> ventas { get; set; }
+        public DbSet<DetalleVenta> detalleventa { get; set; }
         public DbSet<DetalleCompra> DetalleCompras { get; set; }
 
 
@@ -38,9 +39,9 @@ namespace VG.SysInventario.DAL
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<DetalleVenta>()
-               .HasOne(d => d.Venta)
-               .WithMany(c => c.DetalleVentas)
-               .HasForeignKey(d => d.IdVenta);
+                .HasOne(d => d.venta)
+                .WithMany(c => c.DetalleVentas)
+                .HasForeignKey(d => d.IdVenta);
             base.OnModelCreating(modelBuilder);
         }
 
